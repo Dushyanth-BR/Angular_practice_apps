@@ -1,0 +1,35 @@
+<div class="container">
+    <div *ngIf="isLoading | async; then Loading else Loaded ">
+
+    </div>
+    <ng-template #Loading>
+        <div>Please wait. Loading the Table...</div>
+    </ng-template>
+
+    <ng-template #Loaded>
+        <table class="table table-dark table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Movie ID</th>
+                    <th>Movie Name</th>
+                    <th>Movie Language</th>
+                    <th>Movie Genre</th>
+                    <th>Movie Rating</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movie of MovieList$ | async; let i=index">
+                    <td>{{movie.Id}}</td>
+                    <td>{{movie.Name}}</td>
+                    <td>{{movie.Language}}</td>
+                    <td>{{movie.Genre}}</td>
+                    <td>{{movie.Rating}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" (click)="DeleteMovieByIndexAsync(movie)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
+</div>

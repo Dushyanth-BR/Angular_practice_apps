@@ -1,0 +1,40 @@
+<div class="container">
+    <form class="row offset-3 col-6 row-gap-3" [formGroup]="Movie" (ngSubmit)="AddMovie()">
+            <div class="input-group">
+                <label for="movieId" class="input-group-text col-3 justify-content-center">Movie ID</label>
+                <input id="movieId" class="form-control" placeholder="Enter Movie ID..." formControlName="MovieId">
+            </div>   
+            <div class="input-group">
+                <label for="movieName" class="input-group-text col-3 justify-content-center">Movie Name</label>
+                <input id="movieName" class="form-control" placeholder="Enter Movie Name..." formControlName="MovieName">
+            </div>    
+            <div class="input-group">
+                <label for="movieLanguage" class="input-group-text col-3 justify-content-center">Movie Language</label>
+                <input id="movieLanguage" class="form-control" placeholder="Enter Movie Language..." formControlName="MovieLanguage">
+            </div> 
+            <div class="input-group">
+                <label for="movieGenre" class="input-group-text col-3 justify-content-center">Movie Genre</label>
+                <input id="movieGenre" class="form-control" placeholder="Enter Movie Genre..." formControlName="MovieGenre">
+            </div>
+            <div class="input-group">
+                <label for="movieRating" class="input-group-text col-3 justify-content-center">Movie Rating</label>
+                <input id="movieRating" class="form-control" placeholder="Enter Movie Rating..." formControlName="MovieRating">
+            </div>
+            <div class="input-group">
+                <label for="movieActors" class="input-group-text col-3 justify-content-center">Movie Actors</label>
+                <input id="movieActors" class="form-control" placeholder="Actor Name..." #ActorName>
+                <button type="button" class="btn btn-warning" (click)="AddActor(ActorName)">+</button>
+            </div>
+            <div class="input-group">
+                <label class="btn border" [ngStyle]="{'margin-left.px': 5}" *ngFor="let actor of GetActors; let i = index">
+                    {{actor}}
+                    <button type="button" class="btn btn-danger btn-sm" (click)="DeleteActor(i)" >x</button>
+                </label>
+            </div>
+            <div class="input-group">
+                <button class="btn btn-outline-success col-3" [disabled]="Movie.status=='INVALID'" >Submit</button>
+            </div>
+    </form>
+    <hr>
+    <app-movietable></app-movietable>
+</div>
